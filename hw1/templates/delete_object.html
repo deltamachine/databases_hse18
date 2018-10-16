@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>Калорийность блюд</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+    	document.addEventListener('DOMContentLoaded', function() {
+    	M.AutoInit();
+	    var elems = document.querySelectorAll('select');
+	    var instances = M.FormSelect.init(elems, options);
+	  });
+    </script>
+</head>
+
+<style>
+.select-wrapper {
+	border: none !important; 
+	box-shadow: 0 0 10px #e2e2e2!important;
+}
+.caret {
+	display: none !important;
+}
+
+.select-dropdown {
+	border-bottom: none !important;
+	padding-left: 2% !important;
+}
+</style>
+
+<body>
+	<div class="navbar-fixed">
+	    <nav class="main-navbar" style="background-color: #4ca497 !important;">
+	        <div class="nav-wrapper">           
+	            <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left: 8%;">
+	                 <li><a class="main-menu-items" href="/" style="font-size: 1.2rem;">Рассчитать калорийность блюда</a></li>
+	                 <li><a class="main-menu-items" href="/add" style="font-size: 1.2rem;">Добавить продукт</a></li>
+	                 <li><a class="main-menu-items" href="/edit" style="font-size: 1.2rem;">Изменить продукт</a></li>
+	                 <li><a class="main-menu-items" href="/delete" style="font-size: 1.2rem;">Удалить продукт</a></li>
+	            </ul>
+	        </div>
+	    </nav>
+	</div>
+
+    <div class="row header-row" style="padding-top: 5%;">
+	    <div class="col s1"></div>
+
+	    <div class="col s7 header-col">
+	        <h4 style="line-height: 4rem;">Расчет калорийности блюд по рецепту, заданному пользователем</h4>
+	    </div>
+
+	    <div class="col s3  img-col">
+	        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB4qlpSAQ9KTJOSRdmu4VoRsF3ygl0rE3DZe4-BbpX-YNyCYC3" style="width: 100%;">
+	    </div>
+
+	    <div class="col s1"></div>
+	</div>
+
+
+	<div class="row" style="padding-bottom: 2%;">
+		<div class="col s1"></div>
+		<div class="col s10">
+			<p style="font-size: 1.4rem;">Удалить ингредиент</p>
+
+			<form method="post" name="delete">
+				<div class="input-field" style="width: 40%;">
+			    <select name="delete">
+			      <option value="" disabled selected>Выберите продукт</option>
+			      {% for product in products %}
+				      <option value="{{ product.0 }}">{{ product.0 }}</option>
+				  {% endfor %}
+			    </select>
+			  </div>
+			<input type="submit" class="waves-effect waves-light btn" type="submit" value="Удалить">
+			</form>	
+
+			<p style="font-size: 1.4rem; margin-top: 5%;">Таблица доступных продуктов</p>	
+
+			<table class="striped" style="margin-top: 2%;">
+				<tr>
+					<th style="padding-left: 2%; padding-right: 2%;">Продукт</th>
+					<th style="padding-left: 2%; padding-right: 2%;">Калорийность (на 100 грамм)</th>
+				</tr>
+
+				{% for elem in products %}
+					<tr>
+						<td style="padding-left: 2%; padding-right: 2%;">{{ elem.0 }}</td>
+						<td style="padding-left: 2%; padding-right: 2%;">{{ elem.1 }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div class="col s1"></div>
+	</div>
+
+
+</body>
+</html>

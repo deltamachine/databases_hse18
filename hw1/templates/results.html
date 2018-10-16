@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>Калорийность блюд</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</head>
+
+<body>
+	<div class="navbar-fixed">
+	    <nav class="main-navbar" style="background-color: #4ca497 !important;">
+	        <div class="nav-wrapper">           
+	            <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left: 8%;">
+	                 <li><a class="main-menu-items" href="/" style="font-size: 1.2rem;">Рассчитать калорийность блюда</a></li>
+	                 <li><a class="main-menu-items" href="/add" style="font-size: 1.2rem;">Добавить продукт</a></li>
+	                 <li><a class="main-menu-items" href="/edit" style="font-size: 1.2rem;">Изменить продукт</a></li>
+	                 <li><a class="main-menu-items" href="/delete" style="font-size: 1.2rem;">Удалить продукт</a></li>
+	            </ul>
+	        </div>
+	    </nav>
+	</div>
+
+    <div class="row header-row" style="padding-top: 5%;">
+	    <div class="col s1"></div>
+
+	    <div class="col s7 header-col">
+	        <h4 style="line-height: 4rem;">Расчет калорийности блюд по рецепту, заданному пользователем</h4>
+	    </div>
+
+	    <div class="col s3  img-col">
+	        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB4qlpSAQ9KTJOSRdmu4VoRsF3ygl0rE3DZe4-BbpX-YNyCYC3" style="width: 100%;">
+	    </div>
+
+	    <div class="col s1"></div>
+	</div>
+
+
+	<div class="row" style="padding-bottom: 2%;">
+		<div class="col s1"></div>
+		<div class="col s10">
+			<p style="font-size: 1.4rem;">Результат:</p>
+			{% if len_nf == 0 %}
+				<p style="font-size: 1.1rem;">Калорийность вашего блюда составляет {{ output }} кКал.</p>
+			{% elif len_nf == 1 %}
+				<p style="font-size: 1.1rem;">Ингредиент {{ not_found }} не был найден в нашей базе данных.<br>Без учета этого ингредиента калорийность вашего блюда составляет {{ output }} кКал.</p>
+		    {% else %}
+				<p style="font-size: 1.1rem;">Ингредиенты {{ not_found }}
+				  не были найдены в нашей базе данных.<br>Без учета этих ингредиентов калорийность вашего блюда составляет {{ output }} кКал.</p>
+			{% endif %}
+		</div>
+		<div class="col s1"></div>
+	</div>
+
+
+</body>
+</html>
